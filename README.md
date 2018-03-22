@@ -1,4 +1,5 @@
-# 自定义的v2hero[![Build Status](https://travis-ci.org/onplus/v2hero.svg?branch=core-3.1)](https://travis-ci.org/lushantingyue/v2ray-heroku)
+# 自定义的v2hero[![Build Status](https://travis-ci.org/lushantingyue/v2ray.svg?branch=master)](https://travis-ci.org/lushantingyue/v2ray)
+
 ## 感谢: [v2hero](https://github.com/onplus/v2hero)
 
 * 部署方法
