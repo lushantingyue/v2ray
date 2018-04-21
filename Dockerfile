@@ -5,11 +5,16 @@ ENV CONFIG_JSON1=none CONFIG_JSON2=none UUID=91cb66ba-a373-43a0-8169-33d4eeaeb85
 RUN apk add --no-cache --virtual .build-deps ca-certificates curl \
  && mkdir -m 777 /v2raybin 
  
-ADD entrypoint.sh /entrypoint.sh
+ADD caddy-build.sh /caddy-build.sh 
+ADD entrypoint.sh /entrypoint.sh 
+ADD supervisor-build.sh /supervisor-build.sh 
 
+RUN chmod +x /caddy-build.sh 
 RUN chmod +x /entrypoint.sh 
+RUN chmod +x /supervisor-build.sh 
 
 #ENTRYPOINT /entrypoint.sh
 
+CMD /caddy-build.sh
 CMD /entrypoint.sh
-
+CMD /supervisor-build.sh
