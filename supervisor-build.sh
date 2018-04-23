@@ -1,6 +1,6 @@
-apt-get install supervisor -y \
+apk add supervisor \
  && touch /etc/supervisor/conf.d/v2ray-caddy.conf \
- && vi /etc/supervisor/conf.d/v2ray-caddy.conf \
+ && cd    /etc/supervisor/conf.d \
  && echo -e -n "$SUPERVISOR_CONF" > v2ray-caddy.conf \
  && supervisorctl update all \
  && supervisorctl restart v2ray \
