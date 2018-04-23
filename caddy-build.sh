@@ -1,4 +1,4 @@
-mkdir /etc/caddy \
+mkdir /etc/caddy && cd /etc/caddy \
  && wget https://github.com/mholt/caddy/releases/download/v0.10.14/caddy_v0.10.14_linux_amd64.tar.gz \
  && mkdir caddy \
  && tar -zxvf caddy_v0.10.14_linux_amd64.tar.gz -C /etc/caddy/caddy \
