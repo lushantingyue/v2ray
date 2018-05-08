@@ -26,7 +26,7 @@ RUN apk add --no-cache --virtual .build-deps ca-certificates curl && mkdir -m 77
 RUN wget -O /usr/bin/v2ray/v2ray.zip https://github.com/v2ray/v2ray-core/releases/download/v$VER/v2ray-linux-64.zip
 
 RUN mkdir /etc/v2ray
-COPY config.json /etc/v2ray/config.json
+COPY config.json /etc/v2ray/config.json && chmod +x /etc/v2ray/config.json
 
 RUN cd /usr/bin/v2ray && unzip v2ray.zip \
  && mv /usr/bin/v2ray/v2ray-v$VER-linux-64/v2ray /usr/bin/v2ray \
@@ -41,7 +41,7 @@ RUN cd /usr/bin/v2ray && unzip v2ray.zip \
 
 RUN set -ex && \
   apk --no-cache add ca-certificates && \
-  mkdir /var/log/v2ray/ &&\
+  mkdir /var/log/v2ray/ && \
   chmod +x /usr/bin/v2ray/v2ctl && \
   chmod +x /usr/bin/v2ray/v2ray
 
