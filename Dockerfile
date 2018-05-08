@@ -4,8 +4,8 @@ LABEL maintainer "Lushantingyue <lushantingyue@gmail.com>"
 
 ENV CONFIG_JSON1=none CONFIG_JSON2=none CONFIG_JSON3=none UUID=91cb66ba-a373-43a0-8169-33d4eeaeb857 PORT=8081 CERT_PEM=none KEY_PEM=none VER=3.20
 
-ADD entrypoint.sh /entrypoint.sh 
-RUN chmod +x /entrypoint.sh 
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # 官方配置 v2ray-core
 # ADD https://storage.googleapis.com/v2ray-docker/v2ray /usr/bin/v2ray/
@@ -29,8 +29,6 @@ RUN apk add --no-cache --virtual .build-deps ca-certificates curl && mkdir -m 77
 RUN wget -O /usr/bin/v2ray/v2ray.zip https://github.com/v2ray/v2ray-core/releases/download/v$VER/v2ray-linux-64.zip
 
 RUN mkdir /etc/v2ray && touch /etc/v2ray/config.json
-
-RUN /entrypoint.sh
 
 RUN cd /usr/bin/v2ray && unzip v2ray.zip \
  && mv /usr/bin/v2ray/v2ray-v$VER-linux-64/v2ray /usr/bin/v2ray \
@@ -67,4 +65,5 @@ RUN apk update \
 # 配置V2Ray/Caddy守护进程
 COPY supervisord.conf /etc/supervisord.conf
 
-ENTRYPOINT /usr/bin/supervisord -c /etc/supervisord.conf && supervisorctl update && supervisorctl restart all
+# CMD /entrypoint.sh
+CMD /entrypoint.sh && /usr/bin/supervisord -c /etc/supervisord.conf && supervisorctl update && supervisorctl restart all
