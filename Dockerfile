@@ -65,5 +65,5 @@ RUN apk update \
 # 配置V2Ray/Caddy守护进程
 COPY supervisord.conf /etc/supervisord.conf
 
-# CMD /entrypoint.sh
-CMD /usr/bin/supervisord -c /etc/supervisord.conf && supervisorctl update && supervisorctl restart all
+CMD v2ray -config=/etc/v2ray/config.json
+# CMD /usr/bin/supervisord -c /etc/supervisord.conf && supervisorctl update && supervisorctl restart all
