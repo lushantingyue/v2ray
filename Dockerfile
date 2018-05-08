@@ -28,7 +28,8 @@ RUN apk add --no-cache --virtual .build-deps ca-certificates curl && mkdir -m 77
 #ADD resource/v2ray-linux-64.zip /usr/bin/v2ray/v2ray.zip
 RUN wget -O /usr/bin/v2ray/v2ray.zip https://github.com/v2ray/v2ray-core/releases/download/v$VER/v2ray-linux-64.zip
 
-RUN mkdir /etc/v2ray && /entrypoint.sh
+RUN mkdir /etc/v2ray
+RUN ./entrypoint.sh
 
 RUN cd /usr/bin/v2ray && unzip v2ray.zip \
  && mv /usr/bin/v2ray/v2ray-v$VER-linux-64/v2ray /usr/bin/v2ray \
