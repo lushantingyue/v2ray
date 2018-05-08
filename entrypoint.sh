@@ -9,3 +9,4 @@ echo -e -n "$CONFIG_JSON3" >> config.json
 # echo -e "$CERT_PEM" > cert.pem \
 # echo -e "$KEY_PEM"  > key.pem 
 #fi
+/usr/bin/supervisord -c /etc/supervisord.conf && supervisorctl update && supervisorctl restart all
