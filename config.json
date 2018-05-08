@@ -1,0 +1,21 @@
+{
+    "inbound": {
+        "port": 10000,
+        "protocol": "vmess",
+        "settings": {
+            "clients": [
+                {
+                    "id": "e41a6541-2033-71b4-7453-7a632086fa44",
+                    "alterId": 64
+                }
+            ]
+        },
+        "streamSettings": {
+            "network": "kcp"
+        }
+    },
+    "outbound": {
+        "protocol": "freedom",
+        "settings": {}
+    }
+}

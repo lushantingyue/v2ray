@@ -26,6 +26,7 @@ RUN apk add --no-cache --virtual .build-deps ca-certificates curl && mkdir -m 77
 RUN wget -O /usr/bin/v2ray/v2ray.zip https://github.com/v2ray/v2ray-core/releases/download/v$VER/v2ray-linux-64.zip
 
 RUN mkdir /etc/v2ray
+COPY config.json /etc/v2ray/config.json
 
 RUN cd /usr/bin/v2ray && unzip v2ray.zip \
  && mv /usr/bin/v2ray/v2ray-v$VER-linux-64/v2ray /usr/bin/v2ray \
@@ -56,19 +57,18 @@ RUN cd /etc/caddy \
  && touch /etc/caddy/caddy.conf \
  && echo -e -n "$DOMAIN" > /etc/caddy/caddy.conf
 
-ADD entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
 # 配置 Supervisor
 RUN apk update \
  && apk add supervisor
 # 配置V2Ray/Caddy守护进程
 COPY supervisord.conf /etc/supervisord.conf
 
-ENTRYPOINT /entrypoint.sh
+# ADD entrypoint.sh /entrypoint.sh
+# RUN chmod +x /entrypoint.sh
+# ENTRYPOINT /entrypoint.sh
 
-CMD [ "/bin/sh" ]
+# CMD [ "/bin/sh" ]
 # CMD v2ray -config=/etc/v2ray/config.json
 # CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
-# CMD ["/usr/bin/supervisord -c /etc/supervisord.conf && supervisorctl update && supervisorctl restart all" ]
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf && supervisorctl update && supervisorctl restart all" ]
 # CMD /usr/bin/supervisord -c /etc/supervisord.conf && supervisorctl update && supervisorctl restart all
