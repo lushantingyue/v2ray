@@ -41,7 +41,7 @@ COPY config.json /etc/v2ray/config.json
 
 RUN set -ex && \
   apk --no-cache add ca-certificates && \
-  mkdir /var/log/v2ray/ && \
+  mkdir /var/log/v2ray/ && touch /var/log/v2ray/status.log && \
   chmod +x /usr/bin/v2ray/v2ctl && \
   chmod +x /usr/bin/v2ray/v2ray
 
@@ -72,12 +72,24 @@ COPY supervisord.conf /etc/supervisord.conf
 # CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
 EXPOSE 10000
 
-RUN /usr/bin/supervisord -c /etc/supervisord.conf
-CMD [ "supervisorctl status" ]
+CMD [ "/usr/bin/supervisord -c /etc/supervisord.conf && /usr/bin/supervisorctl status && /usr/bin/supervisorctl restart v2ray" ]
 # CMD ["/usr/bin/supervisord -c /etc/supervisord.conf"]
-
+# tail -f "/var/log/v2ray/status.log"
 # CMD supervisor -c /etc/supervisord.conf
 
 # CMD /usr/bin/supervisord -c /etc/supervisord.conf && \
 #   supervisorctl update && supervisorctl restart all && \
 #   supervisorctl status
+
+# dockerfile 运行后就退出？
+
+# 解决办法一：tail -f *.log跟踪监听日志文件
+# exec
+# docker run -it vm sh -c "/usr/bin/supervisord -c /etc/supervisord.conf && /usr/bin/supervisorctl status && /usr/bin/supervisorctl restart v2ray && tail -f var/log/v2ray/status.log"
+
+# docker run -it vm sh -c "supervisord -c /etc/supervisord.conf && supervisorctl stop all && v2ray -config=/etc/v2ray/config.json && tail -f /var/log/v2ray/status.log"
+
+# docker run -it vm sh -c "supervisord -c /etc/supervisord.conf && supervisorctl restart all && supervisorctl status && tail -f /var/log/v2ray/status.log"
+
+# 解决办法二: docker 守护态运行容器
+# docker run -d [images-name]
