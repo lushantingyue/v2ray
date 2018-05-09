@@ -37,7 +37,7 @@ RUN cd /usr/bin/v2ray && unzip v2ray.zip \
  && chmod -R g+rwX /usr/bin/v2ray
 
 RUN mkdir /etc/v2ray
-COPY config.json /etc/v2ray/config.json
+# COPY config.json /etc/v2ray/config.json
 
 RUN set -ex && \
   apk --no-cache add ca-certificates && \
