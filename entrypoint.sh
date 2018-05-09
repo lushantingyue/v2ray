@@ -13,4 +13,4 @@
 
 # /usr/bin/supervisord -c /etc/supervisord.conf && supervisorctl update && supervisorctl restart all
 # ./supervisord -c /etc/supervisord.conf && ./supervisorctl status && ./supervisorctl restart v2ray
-./v2ray -config=/etc/v2ray/config/json
+v2ray -config=/etc/v2ray/config/json
