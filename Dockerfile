@@ -70,9 +70,11 @@ COPY supervisord.conf /etc/supervisord.conf
 # CMD [ "/bin/sh" ]
 # CMD v2ray -config=/etc/v2ray/config.json
 # CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
-EXPOSE 10000
+EXPOSE 80
 
-CMD [ "/usr/bin/supervisord -c /etc/supervisord.conf && /usr/bin/supervisorctl status && /usr/bin/supervisorctl restart v2ray" ]
+# CMD [ "/usr/bin/supervisord -c /etc/supervisord.conf && /usr/bin/supervisorctl status && /usr/bin/supervisorctl restart v2ray" ]
+CMD /entrypoint.sh
+
 # CMD ["/usr/bin/supervisord -c /etc/supervisord.conf"]
 # tail -f "/var/log/v2ray/status.log"
 # CMD supervisor -c /etc/supervisord.conf
