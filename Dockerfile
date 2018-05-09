@@ -63,8 +63,8 @@ RUN apk update \
 # 配置V2Ray/Caddy守护进程
 COPY supervisord.conf /etc/supervisord.conf
 
-# ADD entrypoint.sh /entrypoint.sh
-# RUN chmod +x /entrypoint.sh
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 # ENTRYPOINT /entrypoint.sh
 
 # CMD [ "/bin/sh" ]
