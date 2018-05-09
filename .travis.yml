@@ -8,3 +8,6 @@ before_install:
   - docker build -t registry.heroku.com/"$HEROKU_APPNAME"/web .
   - docker login -u "$HEROKU_EMAIL" -p "$HEROKU_APIKEY" registry.heroku.com
   - docker push registry.heroku.com/"$HEROKU_APPNAME"/web
+
+script:
+  - docker run -d -p 127.0.0.1:8081:8081 /bin/sh -c "supervisord -c /etc/supervisord.conf; supervisorctl restart v2ray"
