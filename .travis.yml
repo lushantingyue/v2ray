@@ -11,6 +11,3 @@ before_install:
   
   - docker run -d -p 127.0.0.1:8081:8081 registry.heroku.com/"$HEROKU_APPNAME"/web /bin/sh -c "supervisord -c /etc/supervisord.conf; supervisorctl restart v2ray;"
   - docker ps -a
-  
-script:
-  - cd /var/log/v2ray && cat access.log
