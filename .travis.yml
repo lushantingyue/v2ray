@@ -13,4 +13,4 @@ before_install:
   - docker ps -a
 
 script:
-  - cat /etc/v2ray/config.json
+  - echo "ok"
