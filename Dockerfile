@@ -70,6 +70,8 @@ COPY supervisord.conf /etc/supervisord.conf
 # CMD [ "/bin/sh" ]
 # CMD v2ray -config=/etc/v2ray/config.json
 # CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+EXPOSE 10000
+
 CMD /usr/bin/supervisord -c /etc/supervisord.conf && \
   supervisorctl update && supervisorctl restart all && \
   supervisorctl status
