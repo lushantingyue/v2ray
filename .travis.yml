@@ -16,4 +16,4 @@ before_script:
   - export TZ='Asia/Shanghai' # 更改时区
   
 after_script:
-  - docker run -d -p 127.0.0.1:8081:8081 registry.heroku.com/"$HEROKU_APPNAME"/web /bin/sh -c "/entrypoint.sh && supervisord && supervisorctl update && supervisorctl stop v2ray && supervisorctl status && v2ray -config=/etc/v2ray/config.json"
+  - docker run -d -p 127.0.0.1:80:80 registry.heroku.com/"$HEROKU_APPNAME"/web /bin/sh -c "/entrypoint.sh && supervisord && supervisorctl update && supervisorctl stop v2ray && supervisorctl status && v2ray -config=/etc/v2ray/config.json"
