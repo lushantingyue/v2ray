@@ -76,7 +76,7 @@ RUN chmod +x /entrypoint.sh
 # CMD [ "/bin/sh" ]
 # CMD v2ray -config=/etc/v2ray/config.json
 # CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
-EXPOSE 8081
+EXPOSE 80
 
 # CMD [ "/usr/bin/supervisord -c /etc/supervisord.conf && /usr/bin/supervisorctl status && /usr/bin/supervisorctl restart v2ray" ]
 
