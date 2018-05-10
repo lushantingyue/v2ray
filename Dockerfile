@@ -2,7 +2,7 @@ FROM alpine:latest
 
 LABEL maintainer "Lushantingyue <lushantingyue@gmail.com>"
 
-ENV CONFIG_JSON1={\"log\": {\"access\": \"/var/log/v2ray/access.log\",\"error\": \"/var/log/v2ray/error.log\",\"loglevel\": \"warning\"},\"inbound\": {\"protocol\": \"vmess\",\"port\":
+ENV CONFIG_JSON1={\"log\": {\"access\": \"\/var\/log\/v2ray\/access.log\",\"error\": \"\/var\/log\/v2ray\/error.log\",\"loglevel\": \"warning\"},\"inbound\": {\"protocol\": \"vmess\",\"port\":
 
 ENV CONFIG_JSON2=,\"settings\":{\"clients\":[{\"id\":\" 
 
