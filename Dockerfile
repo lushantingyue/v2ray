@@ -74,12 +74,12 @@ EXPOSE 8080
 
 # CMD [ "/usr/bin/supervisord -c /etc/supervisord.conf && /usr/bin/supervisorctl status && /usr/bin/supervisorctl restart v2ray" ]
 
-# cd /etc/v2ray \
-#  && echo -e -n "$CONFIG_JSON1"    > config.json \
-#  && echo -e -n "$PORT"                  >> config.json \
-#  && echo -e -n "$CONFIG_JSON2"  >> config.json \
-#  && echo -e -n "$UUID"                  >> config.json \
-#  && echo -e -n "$CONFIG_JSON3" >> config.json
+RUN cd /etc/v2ray \
+ && echo -e -n "$CONFIG_JSON1"    > config.json \
+ && echo -e -n "$PORT"                  >> config.json \
+ && echo -e -n "$CONFIG_JSON2"  >> config.json \
+ && echo -e -n "$UUID"                  >> config.json \
+ && echo -e -n "$CONFIG_JSON3" >> config.json
 
 CMD /entrypoint.sh
 
