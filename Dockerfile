@@ -2,7 +2,13 @@ FROM alpine:latest
 
 LABEL maintainer "Lushantingyue <lushantingyue@gmail.com>"
 
-ENV CONFIG_JSON1=none CONFIG_JSON2=none CONFIG_JSON3=none UUID=91cb66ba-a373-43a0-8169-33d4eeaeb857 PORT=8081 CERT_PEM=none KEY_PEM=none VER=3.20
+ENV CONFIG_JSON1={\"log\": {\"access\": \"/var/log/v2ray/access.log\",\"error\": \"/var/log/v2ray/error.log\",\"loglevel\": \"warning\"},\"inbound\": {\"protocol\": \"vmess\",\"port\":
+
+ENV CONFIG_JSON2=,\"settings\":{\"clients\":[{\"id\":\" 
+
+ENV CONFIG_JSON3=\",\"alterId\": 64}]},\"streamSettings\": {\"network\": \"ws\"}},\"inboundDetour\": [],\"outbound\": {\"protocol\": \"freedom\",\"settings\":{} }}
+
+ENV UUID=91cb66ba-a373-43a0-8169-33d4eeaeb857 PORT=8081 CERT_PEM=none KEY_PEM=none VER=3.20
 
 # 官方配置 v2ray-core
 # ADD https://storage.googleapis.com/v2ray-docker/v2ray /usr/bin/v2ray/
