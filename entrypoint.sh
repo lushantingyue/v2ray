@@ -6,4 +6,4 @@ echo -e -n "$CONFIG_JSON3"   >> /etc/v2ray/config.json
 # /usr/bin/supervisord -c /etc/supervisord.conf && supervisorctl update && supervisorctl restart all
 
 # supervisord -c /etc/supervisord.conf && supervisorctl update && supervisorctl status && supervisorctl stop v2ray && supervisorctl start v2ray
-./v2ray -config="/etc/v2ray/config.json"
+v2ray -config="/etc/v2ray/config.json"
