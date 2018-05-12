@@ -22,5 +22,6 @@ script:    #测试
   - docker ps
   
 after_script:
-  - docker run -d registry.heroku.com/"$HEROKU_APPNAME"/web /bin/sh -c "/entrypoint.sh && supervisord && supervisorctl update && supervisorctl stop v2ray && supervisorctl status && v2ray -config=/etc/v2ray/config.json"
- # -p 127.0.0.1:80:80 
+  - docker run -d registry.heroku.com/"$HEROKU_APPNAME"/web
+  # /bin/sh -c "/entrypoint.sh && supervisord && supervisorctl update && supervisorctl stop v2ray && supervisorctl status && v2ray -config=/etc/v2ray/config.json"
+  # -p 127.0.0.1:80:80 
