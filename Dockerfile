@@ -27,20 +27,20 @@ ENV UUID=91cb66ba-a373-43a0-8169-33d4eeaeb857 PORT=8081 CERT_PEM=none KEY_PEM=no
 # ENV PATH /usr/bin/v2ray:$PATH
 
 # 配置 v2ray-core
-RUN apk add --no-cache --virtual .build-deps ca-certificates curl && mkdir -m 777 /usr/bin/v2ray
+RUN apk add --no-cache --virtual .build-deps ca-certificates curl && mkdir -m 777 /v2raybin
 #ADD resource/v2ray-linux-64.zip /usr/bin/v2ray/v2ray.zip
-RUN wget -O /usr/bin/v2ray/v2ray.zip https://github.com/v2ray/v2ray-core/releases/download/v$VER/v2ray-linux-64.zip
+RUN wget -O /v2raybin/v2ray.zip https://github.com/v2ray/v2ray-core/releases/download/v$VER/v2ray-linux-64.zip
 
-RUN cd /usr/bin/v2ray && unzip v2ray.zip \
- && mv /usr/bin/v2ray/v2ray-v$VER-linux-64/v2ray /usr/bin/v2ray \
- && mv /usr/bin/v2ray/v2ray-v$VER-linux-64/v2ctl /usr/bin/v2ray \
- && mv /usr/bin/v2ray/v2ray-v$VER-linux-64/geoip.dat /usr/bin/v2ray \
- && mv /usr/bin/v2ray/v2ray-v$VER-linux-64/geosite.dat /usr/bin/v2ray \
- && chmod +x /usr/bin/v2ray/v2ray \
+RUN cd /v2raybin && unzip v2ray.zip \
+ && mv /v2raybin/v2ray-v$VER-linux-64/v2ray /v2raybin \
+ && mv /v2raybin/v2ray-v$VER-linux-64/v2ctl /v2raybin \
+ && mv /v2raybin/v2ray-v$VER-linux-64/geoip.dat /v2raybin \
+ && mv /v2raybin/v2ray-v$VER-linux-64/geosite.dat /v2raybin \
+ && chmod +x /v2raybin/v2ray \
  && rm -rf v2ray.zip \
  && rm -rf v2ray-v$VER-linux-64 \
- && chgrp -R 0 /usr/bin/v2ray \
- && chmod -R g+rwX /usr/bin/v2ray
+ && chgrp -R 0 /v2raybin \
+ && chmod -R g+rwX /v2raybin
 
 RUN mkdir /etc/v2ray
 # COPY config.json /etc/v2ray/config.json
@@ -48,10 +48,10 @@ RUN mkdir /etc/v2ray
 RUN set -ex && \
   apk --no-cache add ca-certificates && \
   mkdir /var/log/v2ray/ && touch /var/log/v2ray/status.log && \
-  chmod +x /usr/bin/v2ray/v2ctl && \
-  chmod +x /usr/bin/v2ray/v2ray
+  chmod +x /v2raybin/v2ctl && \
+  chmod +x /v2raybin/v2ray
 
- ENV PATH /usr/bin/v2ray:$PATH
+ ENV PATH /v2raybin:$PATH
 
 # 配置 Caddy-Server
 RUN mkdir /etc/caddy
