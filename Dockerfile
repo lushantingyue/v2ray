@@ -27,7 +27,10 @@ ENV UUID=91cb66ba-a373-43a0-8169-33d4eeaeb857 PORT=8081 CERT_PEM=none KEY_PEM=no
 # ENV PATH /usr/bin/v2ray:$PATH
 
 # 配置 v2ray-core
-RUN apk add --no-cache --virtual .build-deps ca-certificates curl && mkdir -m 777 /v2raybin
+RUN apk update && apk add --no-cache --virtual .build-deps ca-certificates curl bash tzdata \
+    && cp -r -f /usr/share/zoneinfo/Hongkong /etc/localtime \
+    && echo -ne "Alpine Linux 3.4 image. (`uname -rsv`)\n" >> /root/.built \
+    && mkdir -m 777 /v2raybin
 #ADD resource/v2ray-linux-64.zip /usr/bin/v2ray/v2ray.zip
 RUN wget -O /v2raybin/v2ray.zip https://github.com/v2ray/v2ray-core/releases/download/v$VER/v2ray-linux-64.zip
 
